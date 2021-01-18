@@ -34,11 +34,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('FilterMasterlist', [UploadsController::class, 'searchandfilter']);
     Route::post('Upload', [UploadsController::class, 'upload'])->name('upload.post');
 
-    // Route::get('/storage/{userId}/{filename}', [UploadsController::class, 'preview'])->where('filename', '^[^/]+$');
-
+    Route::get('/storage/{userId}/{filename}', [UploadsController::class, 'preview'])->where(['filename' => '.*']);
 });
 
-Route::get('/storage/{userId}/{filename}', [UploadsController::class, 'preview'])->where(['filename' => '.*']);
+// Route::get('/storage/{userId}/{filename}', [UploadsController::class, 'preview'])->where(['filename' => '.*']);
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/storage/files_uploaded/{userId}/{filename}', function (Request $request, $id) { {
 
