@@ -39,7 +39,6 @@ class ExampleTest extends TestCase
         $response = $this->post('/avatar', [
             'avatar' => $file,
         ]);
-
  
         // Storage::disk('public_uploads')->assertExists('file/' . $response->hashName());
     }
