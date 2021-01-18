@@ -3,21 +3,19 @@ $(document).on('click', '.preview_asset', function(){
     var filetype = $(this).attr('data-type');
     var userId = $(this).attr('data-userId');
     var filename = $(this).html();
-    // alert($filename);
 
     switch(filetype){
         case 'jpg':
             $('#modal1 .file_prev').html(`<img src="/storage/${userId}/${filename}"/>`)
         break;
         case 'mp4':
-            $('#modal1 .file_prev').html(`<video width="320" height="240" controls><source src="/storage/${userId}/${filename}" type="video/mp4"></video>`)
+            $('#modal1 .file_prev').html(`<video width="100%" height="100%" controls><source src="/storage/${userId}/${filename}" type="video/mp4"></video>`)
         break;
         case 'pdf':
-            $('#modal1 .file_prev').html(`<embed src="/storage/${userId}/${filename}" width="800px" height="1000px" />`)
+            $('#modal1 .file_prev').html(`<iframe  src="/storage/${userId}/${filename}" width="800" height="1000"></iframe>`)
             
         default:
     }
-    // console.log(`<img src="/storage/files_uploaded/${userId}/${filename}"/>`);
 })
 $(document).on('click', '#searchbtn', function(){
     let search = $('input[name="search"]').val();

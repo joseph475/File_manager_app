@@ -7,14 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\File_Masterlist;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
 
 class UploadsController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth:sanctum');
-    // }
-
     public function searchandfilter(Request $request)
     {
 
@@ -36,9 +32,10 @@ class UploadsController extends Controller
 
     public function preview($userId, $filename)
     {
-        $path = 'public/files_uploaded/' . $userId . '/' . $filename;
+        // $path = 'public/files_uploaded/' . $userId . '/' . $filename;
+        $path = 'app/public/files_uploaded/' . $userId . '/' . $filename;
 
-        return Storage::get($path);
+        return response()->file(storage_path($path));
     }
 
     public function upload(Request $request)

@@ -36,23 +36,3 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/storage/{userId}/{filename}', [UploadsController::class, 'preview'])->where(['filename' => '.*']);
 });
-
-// Route::get('/storage/{userId}/{filename}', [UploadsController::class, 'preview'])->where(['filename' => '.*']);
-
-// Route::middleware(['auth:sanctum', 'verified'])->get('/storage/files_uploaded/{userId}/{filename}', function (Request $request, $id) { {
-
-//         if (Auth::user()->id == $id) {
-//             return Storage::download($request->f);
-//         } else {
-//             Session::flash('error', 'Access  deny');
-//             return back();
-//         }
-//     }
-// });
-
-// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [UploadsController::class, 'index']);
-// Route::middleware(['auth:sanctum', 'verified'])->get('/upload', function () {
-//     return view('upload');
-// })->name('upload');
-// Route::middleware(['auth:sanctum', 'verified'])->get('FilterMasterlist', [UploadsController::class, 'searchandfilter']);
-// Route::middleware(['auth:sanctum', 'verified'])->post('Upload', [UploadsController::class, 'upload'])->name('upload.post');
