@@ -7,13 +7,13 @@ $(document).on('click', '.preview_asset', function(){
 
     switch(filetype){
         case 'jpg':
-            $('#modal1 .file_prev').html(`<img src="/storage/files_uploaded/${userId}/${filename}"/>`)
+            $('#modal1 .file_prev').html(`<img src="/storage/${userId}/${filename}"/>`)
         break;
         case 'mp4':
-            $('#modal1 .file_prev').html(`<video width="320" height="240" controls><source src="/storage/files_uploaded/${userId}/${filename}" type="video/mp4"></video>`)
+            $('#modal1 .file_prev').html(`<video width="320" height="240" controls><source src="/storage/${userId}/${filename}" type="video/mp4"></video>`)
         break;
         case 'pdf':
-            $('#modal1 .file_prev').html(`<embed src="/storage/files_uploaded/${userId}/${filename}" width="800px" height="1000px" />`)
+            $('#modal1 .file_prev').html(`<embed src="/storage/${userId}/${filename}" width="800px" height="1000px" />`)
             
         default:
     }

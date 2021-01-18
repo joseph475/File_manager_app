@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UploadsController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,15 +24,32 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-    Route::get('/upload', function () { return view('upload'); })->name('upload');
-    Route::get('/dashboard', function () { return view('dashboard'); });
-    
+    Route::get('/upload', function () {
+        return view('upload');
+    })->name('upload');
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    });
+
     Route::get('FilterMasterlist', [UploadsController::class, 'searchandfilter']);
     Route::post('Upload', [UploadsController::class, 'upload'])->name('upload.post');
 
-    Route::get('storage/{userId}/{filename}', [UploadsController::class, 'preview'])->where('filename', '^[^/]+$');
+    // Route::get('/storage/{userId}/{filename}', [UploadsController::class, 'preview'])->where('filename', '^[^/]+$');
 
 });
+
+Route::get('/storage/{userId}/{filename}', [UploadsController::class, 'preview'])->where(['filename' => '.*']);
+
+// Route::middleware(['auth:sanctum', 'verified'])->get('/storage/files_uploaded/{userId}/{filename}', function (Request $request, $id) { {
+
+//         if (Auth::user()->id == $id) {
+//             return Storage::download($request->f);
+//         } else {
+//             Session::flash('error', 'Access  deny');
+//             return back();
+//         }
+//     }
+// });
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [UploadsController::class, 'index']);
 // Route::middleware(['auth:sanctum', 'verified'])->get('/upload', function () {

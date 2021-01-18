@@ -10,11 +10,10 @@ use Illuminate\Support\Facades\Storage;
 
 class UploadsController extends Controller
 {
-    public function __construct() {
-        $this->middleware('auth');
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
     }
-
-    public $files;
 
     public function searchandfilter(Request $request)
     {
@@ -34,30 +33,18 @@ class UploadsController extends Controller
 
         return $this->files;
     }
-    public function preview($userId, $filename){
-        $path = asset('storage/files_uploaded/' . $userId . '/'. $filename);
-        // echo $path; exit;
-        // $path = storage_path('public\files_uploaded\\' . $userId . '\\' . $filename);
-        // // echo $path; exit;
 
-        return $path;
+    public function preview($userId, $filename)
+    {
+        $path = 'public/files_uploaded/' . $userId . '/' . $filename;
+
+        return Storage::get($path);
     }
+
     public function upload(Request $request)
     {
 
         $id = Auth::id();
-
-        // $filename = $request->file->getClientOriginalName();
-        // // $path = $request->file('file')->store(Storage::disk('public_uploads'));
-        // // $path = Storage::putFile('public_uploads/' . $id, $filename);
-
-        // $request->file('file')->storeAs(
-        //     'public_uploads/' . $id, $filename,
-        // );
-
-        // $request->file->move(storage_path('app/public/files_uploaded/'), $filename);
-
-        // return back();
 
         if (isset($request->file)) {
 
@@ -70,9 +57,7 @@ class UploadsController extends Controller
                     mkdir(storage_path('app/public/files_uploaded/' . $id));
                 }
 
-                if(!file_exists(storage_path('app/public/files_uploaded/' . $id . '/' . $filename))){
-                    // $request->file->move(public_path('files_uploaded/' . $id), $filename);
-
+                if (!file_exists(storage_path('app/public/files_uploaded/' . $id . '/' . $filename))) {
                     $request->file->move(storage_path('app/public/files_uploaded/' . $id), $filename);
 
                     $data =  ([
@@ -90,11 +75,9 @@ class UploadsController extends Controller
                     } else {
                         return view('upload', ['message' => 'Ooops, Something went wrong!', 'status' => '0']);
                     }
+                } else {
+                    return view('upload', ['message' => 'File Already Exists!!!', 'status' => '0']);
                 }
-                else{
-                        return view('upload', ['message' => 'File Already Exists!!!', 'status' => '0']);
-                }
-
             } else {
                 return view('upload', ['message' => 'File type not Supported!!!', 'status' => '0']);
             }
