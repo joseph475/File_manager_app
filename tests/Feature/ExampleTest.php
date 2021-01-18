@@ -30,15 +30,17 @@ class ExampleTest extends TestCase
         $view->assertSee('Taylor');
     }
 
-    public function testAvatarUpload()
+    public function testUploadFile()
     {
-        Storage::fake('public_uploads');
- 
-        $response = $this->json('POST', 'Upload', [ 'file' => UploadedFile::fake()->image('testing.jpg'), ]);
+        Storage::fake('avatars');
 
-        // $this->assertEquals('file/' . $file->hashName(), File_Masterlist::latest()->first()->file);
+        $file = UploadedFile::fake()->image('avatar.jpg');
+
+        $response = $this->post('/avatar', [
+            'avatar' => $file,
+        ]);
+
  
         // Storage::disk('public_uploads')->assertExists('file/' . $response->hashName());
     }
-
 }
