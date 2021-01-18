@@ -21,7 +21,7 @@ $(document).on('click', '.preview_asset', function(){
 })
 $(document).on('click', '#searchbtn', function(){
     let search = $('input[name="search"]').val();
-    loadFiles(search);
+    loadFiles(curpage, search);
 });
 
 $("#filetype").on('change', function () {
