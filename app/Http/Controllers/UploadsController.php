@@ -30,7 +30,7 @@ class UploadsController extends Controller
                     ->orWhere('files_masterlist.description', 'LIKE', "%{$request->search}%");
             })
             ->orderBy('created_at', 'asc')
-            ->paginate(2);
+            ->paginate(10);
 
         return $this->files;
     }
