@@ -1,0 +1,36 @@
+header{
+    z-index: 4;
+    .header-nav{
+        background: $header-footer;
+        box-shadow: none !important;
+        .nav-wrapper{
+            display: flex;
+            justify-content: space-between;
+            padding-right: 32p x;
+            transition: all 0.3s ease;
+
+            .header-icons{
+                display: flex;
+                margin-right: 25px;
+                a{
+                    margin-left: 20px;
+                }
+                i{
+                    font-size: 26px;
+                    
+                }
+            }
+            @media (max-width: 992px){
+                .header-icons{
+                    margin-right: 17px !important;
+                }
+            }
+        }
+        @media (min-width: 993px){
+            .nav-wrapper{
+                transition: all 0.3s ease;
+                padding-left: 300px;
+            }
+        }
+    }
+}

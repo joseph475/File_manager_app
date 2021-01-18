@@ -1,0 +1,57 @@
+.sidenav{
+    // top: 64px;
+    z-index: 5;
+    transition: all 0.3s ease;
+    width: 300px;
+    background: $header-footer;
+    box-shadow: none;
+    li{
+        & > a{
+            color: white !important;
+            font-weight: 400 !important;
+            i{
+                color: white !important;
+            }
+        }
+        ul{
+            background: rgb(41, 41, 40);
+        }
+        .user-view{
+            background: $header-footer;
+            @extend .px20;
+            @extend .py10;
+            margin: 0px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            color: white;
+            img{
+                @extend .mr10;
+            }
+            .user{
+                cursor: pointer;
+                i{
+                    position: relative;
+                    top:3px;
+                }
+            }
+        }
+
+        .user-divider{
+            @extend .no-pad-mar;
+        }
+    }
+    .collapsible-header{
+        padding: 0 32px;
+    }
+}
+
+@media (min-width: 992px){
+    .sidenav-overlay{
+        display: none;
+    }
+}
+
+.sidenav-overlay{
+    z-index: 2;
+}
